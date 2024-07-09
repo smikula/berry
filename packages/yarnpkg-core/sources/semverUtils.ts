@@ -204,32 +204,33 @@ export function stringifyComparator(comparator: Comparator) {
 }
 
 export function simplifyRanges(ranges: Array<string>) {
-  const parsedRanges = ranges.map(range => validRange(range)!.set.map(comparators => comparators.map(comparator => getComparator(comparator))));
+  return `>0.0.0`;
+  // const parsedRanges = ranges.map(range => validRange(range)!.set.map(comparators => comparators.map(comparator => getComparator(comparator))));
 
-  let alternatives = parsedRanges.shift()!.map(comparators => mergeComparators(comparators))
-    .filter((range): range is Comparator => range !== null);
+  // let alternatives = parsedRanges.shift()!.map(comparators => mergeComparators(comparators))
+  //   .filter((range): range is Comparator => range !== null);
 
-  for (const parsedRange of parsedRanges) {
-    const nextAlternatives = [];
+  // for (const parsedRange of parsedRanges) {
+  //   const nextAlternatives = [];
 
-    for (const comparator of alternatives) {
-      for (const refiners of parsedRange) {
-        const nextComparators = mergeComparators([
-          comparator,
-          ...refiners,
-        ]);
+  //   for (const comparator of alternatives) {
+  //     for (const refiners of parsedRange) {
+  //       const nextComparators = mergeComparators([
+  //         comparator,
+  //         ...refiners,
+  //       ]);
 
-        if (nextComparators !== null) {
-          nextAlternatives.push(nextComparators);
-        }
-      }
-    }
+  //       if (nextComparators !== null) {
+  //         nextAlternatives.push(nextComparators);
+  //       }
+  //     }
+  //   }
 
-    alternatives = nextAlternatives;
-  }
+  //   alternatives = nextAlternatives;
+  // }
 
-  if (alternatives.length === 0)
-    return null;
+  // if (alternatives.length === 0)
+  //   return null;
 
-  return alternatives.map(comparator => stringifyComparator(comparator)).join(` || `);
+  // return alternatives.map(comparator => stringifyComparator(comparator)).join(` || `);
 }

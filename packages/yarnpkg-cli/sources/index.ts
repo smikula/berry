@@ -1,3 +1,5 @@
+console.log(`Running modified yarn`);
+
 export {type CommandContext}           from '@yarnpkg/core';
 
 export {BaseCommand}                   from './tools/BaseCommand';
